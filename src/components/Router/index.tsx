@@ -1,11 +1,14 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import App from "../App";
 import Home from "../Home";
 
-function Router() {
+function AnimatedRouter() {
+  const location = useLocation();
+
   return (
-    <BrowserRouter>
-      <Routes>
+    <AnimatePresence exitBeforeEnter>
+      <Routes key={location.pathname} location={location}>
         <Route path="/" element={<Home />} />
         <Route path="/app" element={<App />} />
         {/* <Route path="teams" element={<Teams />}>
@@ -14,8 +17,8 @@ function Router() {
           <Route index element={<LeagueStandings />} />
         </Route> */}
       </Routes>
-    </BrowserRouter>
+    </AnimatePresence>
   );
 }
 
-export default Router;
+export default AnimatedRouter;

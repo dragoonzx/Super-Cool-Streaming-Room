@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Router from "./components/Router";
+import AnimatedRouter from "./components/Router";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router />
+    <BrowserRouter>
+      <AnimatedRouter />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

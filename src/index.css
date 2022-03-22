@@ -4,6 +4,25 @@
 
 @import url("https://fonts.googleapis.com/css?family=Montserrat:900i&display=swap");
 
+@font-face {
+  font-family: "DigitalStrip";
+  src: url("./assets/fonts/digitalStrip/digistrip.ttf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "DigitalStrip";
+  src: url("./assets/fonts/digitalStrip/digistrip_b.ttf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "DigitalStrip";
+  src: url("./assets/fonts/digitalStrip/digistrip_i.ttf");
+  font-weight: bold;
+  font-style: italic;
+}
+
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
@@ -19,6 +38,11 @@ span {
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: white;
   text-shadow: 4px 4px #ff1f8f, 8px 8px #000000;
+}
+
+.font-comic {
+  font-family: "DigitalStrip", sans-serif;
+  font-weight: bold;
 }
 
 code {

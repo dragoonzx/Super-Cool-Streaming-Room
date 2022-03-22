@@ -1,13 +1,16 @@
 import React from "react";
+import AnimatedPage from "../AnimatedPage";
 import HeaderApp from "../HeaderApp";
 
 function Home() {
   return (
     <>
       <HeaderApp />
-      <div className="container mx-auto">
-        <span>App.</span>
-      </div>
+      <AnimatedPage>
+        <div className="container mx-auto">
+          <span>App.</span>
+        </div>
+      </AnimatedPage>
     </>
   );
 }
