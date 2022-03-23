@@ -10,6 +10,50 @@ import { useInView } from "react-intersection-observer";
 import Footer from "../Footer";
 import AnimatedPage from "../AnimatedPage";
 
+import ForceGraph3D from "react-force-graph-3d";
+
+const FocusGraph = () => {
+  const fgRef = useRef<any>();
+
+  const [data, setData] = useState<any>();
+
+  const addData = async () => {
+    const rData = (await import("./miserables.json")).default;
+    console.log(rData);
+    setData(rData);
+  };
+
+  const addBloomEffect = async () => {
+    // const UnrealBloomPassPromise = await import(
+    //   // @ts-ignore
+    //   "//cdn.skypack.dev/three@0.136/examples/jsm/postprocessing/UnrealBloomPass.js"
+    // ).then((m) => m.UnrealBloomPass);
+    // const bloomPass = new UnrealBloomPassPromise();
+    // bloomPass.strength = 3;
+    // bloomPass.radius = 1;
+    // bloomPass.threshold = 0.1;
+    // fgRef?.current && fgRef.current.postProcessingComposer().addPass(bloomPass);
+  };
+
+  useEffect(() => {
+    console.log("add");
+    addData();
+    addBloomEffect();
+  }, []);
+
+  return (
+    <ForceGraph3D
+      ref={fgRef}
+      graphData={data}
+      height={300}
+      backgroundColor="rgba(0,0,0,0)"
+      showNavInfo={false}
+      nodeLabel="id"
+      nodeAutoColorBy="group"
+    />
+  );
+};
+
 function Home() {
   const frontVideoRef = useRef<HTMLVideoElement | null>(null);
   const backVideoRef = useRef<HTMLVideoElement | null>(null);
@@ -45,9 +89,9 @@ function Home() {
         <div className="container mx-auto text-[#ff1f8f]">
           <div
             ref={ref}
-            className="flex items-center justify-between mt-24 px-8"
+            className="flex items-center justify-between mt-16 px-8"
           >
-            <span className="flex basis-1/2">
+            <span className="flex basis-1/2 super-cool">
               Share content together. Live.
             </span>
             {isInteractive && (
@@ -96,21 +140,23 @@ function Home() {
           </div>
           <div className="mt-36 text-[38px] max-w-[70%]">
             <p>
-              Community TV Channel where everyone can post (stream) and comment
+              Community TV Channel where everyone can post (stream), like and
+              comment
             </p>
-            <p>What make it special?</p>
-            <p>web3 & lens</p>
+            <p className="mt-8">What makes it special?</p>
+            <p className="mt-8">web3 & lens</p>
+            <p>1 - 2 - 3</p>
           </div>
           <div className="mt-36 text-[38px] max-w-[70%]">
             <p>Media data insights always with you</p>
-            <div>Graph</div>
+            <div>{/* <FocusGraph /> */}</div>
             <p>
               See what content your peers like, watch our infographics, make
               better choices
             </p>
           </div>
           <div className="mt-24">
-            <span>Or just chill and watch</span>
+            <span className="super-cool">Or just chill and watch</span>
           </div>
           <div className="mt-36 text-[38px] max-w-[70%]">
             <p>Roadmap</p>
