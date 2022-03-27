@@ -4,7 +4,7 @@ import Logo from "../Logo";
 
 function Header() {
   return (
-    <header className="max-w-[95%] mx-auto px-4 py-2 flex justify-between items-center">
+    <header className="max-w-[95%] mx-auto px-4 py-6 flex justify-between items-center">
       <Logo />
       <div>
         <Link to="/app">

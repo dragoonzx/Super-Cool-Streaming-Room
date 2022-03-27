@@ -5,12 +5,16 @@ import watchDiscuss from "../../assets/images/watchDiscuss.png";
 import whenYouWanna from "../../assets/images/whenYouWanna.png";
 import videoFrame from "../../assets/images/videoFrame.png";
 import arrow from "../../assets/images/arrow.png";
+import network from "../../assets/images/network.png";
+import grow from "../../assets/images/grow.png";
 
 import { useInView } from "react-intersection-observer";
 import Footer from "../Footer";
 import AnimatedPage from "../AnimatedPage";
 
 import ForceGraph3D from "react-force-graph-3d";
+import TvSvg from "../AnimatedSvg/tvSvg";
+import { ping } from "../../api/ping";
 
 const FocusGraph = () => {
   const fgRef = useRef<any>();
@@ -46,12 +50,19 @@ const FocusGraph = () => {
       ref={fgRef}
       graphData={data}
       height={300}
-      backgroundColor="rgba(0,0,0,0)"
+      width={500}
+      backgroundColor="#ffff89"
       showNavInfo={false}
       nodeLabel="id"
       nodeAutoColorBy="group"
     />
   );
+};
+
+const FEATURES_LIST = {
+  watch: "Collaborative content watching and discussion",
+  network: "See what others like and comment",
+  grow: "Grow over your data",
 };
 
 function Home() {
@@ -82,14 +93,18 @@ function Home() {
     }
   }, [inView]);
 
+  const [feature, setFeature] = useState<"watch" | "network" | "grow">("watch");
+
   return (
     <>
+      <div className="home-bg absolute top-0 left-0 w-screen h-screen -z-10" />
       <Header />
       <AnimatedPage>
         <div className="container mx-auto text-[#ff1f8f]">
           <div
             ref={ref}
-            className="flex items-center justify-between mt-16 px-8"
+            className="flex items-center justify-between px-8"
+            style={{ minHeight: "calc(100vh - 112px - 64px)" }}
           >
             <span className="flex basis-1/2 super-cool">
               Share content together. Live.
@@ -138,19 +153,45 @@ function Home() {
               </p>
             </div>
           </div>
-          <div className="mt-36 text-[38px] max-w-[70%]">
-            <p>
+          <div className="mt-36 text-[38px]">
+            <p className="max-w-[70%]">
               Community TV Channel where everyone can post (stream), like and
               comment
             </p>
-            <p className="mt-8">What makes it special?</p>
-            <p className="mt-8">web3 & lens</p>
-            <p>1 - 2 - 3</p>
+            <p className="mt-8 max-w-[70%]">What makes it special?</p>
+            <div className="flex items-end justify-between mt-8">
+              <div
+                onClick={() => setFeature("watch")}
+                className="flex flex-col items-center cursor-pointer"
+              >
+                <TvSvg />
+                <p className="mt-4">Watch.</p>
+              </div>
+              <div
+                onClick={() => setFeature("network")}
+                className="flex flex-col items-center cursor-pointer"
+              >
+                <img src={network} alt="" />
+                <p className="mt-4">Network.</p>
+              </div>
+              <div
+                onClick={() => setFeature("grow")}
+                className="flex flex-col items-center cursor-pointer"
+              >
+                <img src={grow} alt="" />
+                <p className="mt-4">Grow.</p>
+              </div>
+            </div>
+            <div className="p-8 border-2 text-[24px] border-solid border-black rounded-md mt-8">
+              {FEATURES_LIST[feature]}
+            </div>
           </div>
-          <div className="mt-36 text-[38px] max-w-[70%]">
-            <p>Media data insights always with you</p>
-            <div>{/* <FocusGraph /> */}</div>
-            <p>
+          <div className="mt-24 text-[38px]">
+            <p className="max-w-[70%]">Media data insights always with you</p>
+            <div className="flex justify-center">
+              <FocusGraph />
+            </div>
+            <p className="max-w-[70%]">
               See what content your peers like, watch our infographics, make
               better choices
             </p>
@@ -158,9 +199,9 @@ function Home() {
           <div className="mt-24">
             <span className="super-cool">Or just chill and watch</span>
           </div>
-          <div className="mt-36 text-[38px] max-w-[70%]">
-            <p>Roadmap</p>
-            <div className="flex items-center text-[24px] mt-4">
+          <div className="mt-36 text-[38px]">
+            <p>Roadmap (Q2 - Q3 2022)</p>
+            <div className="flex items-center justify-between text-[24px] mt-4">
               <p className="mr-4">Private rooms</p>
               <img src={arrow} alt="" className="mr-4" />
               <p className="mr-4">PRO media analytics dashboard</p>

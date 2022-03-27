@@ -1,6 +1,7 @@
 import React from "react";
 import lens from "../../assets/images/lens.png";
 import polygon from "../../assets/images/polygon.png";
+import livepeer from "../../assets/images/livepeer-lpt-logo-wordmark.svg";
 import github from "../../assets/images/github.png";
 
 const Footer = () => {
@@ -13,16 +14,20 @@ const Footer = () => {
             href="https://lens.dev/"
             target="_blank"
             rel="noreferrer"
-            className="h-full"
+            className="h-full mr-8"
           >
-            <img src={lens} alt="lens" className="mr-8 h-full" />
+            <img src={lens} alt="lens" className="h-full" />
           </a>
           <a
             href="https://polygon.technology/"
             target="_blank"
             rel="noreferrer"
+            className="mr-8"
           >
             <img src={polygon} className="h-12" alt="polygon" />
+          </a>
+          <a href="https://livepeer.org/" target="_blank" rel="noreferrer">
+            <img src={livepeer} className="h-12" alt="livepeer" />
           </a>
         </div>
       </div>
